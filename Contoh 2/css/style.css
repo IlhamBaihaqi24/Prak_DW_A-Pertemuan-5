@@ -1,0 +1,374 @@
+* {
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #51d8d8;
+    color: #333333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+
+.logo-placeholder img,
+.hero-image img,
+.card-image img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+
+header {
+    background-color: #51d8d8;
+    border-bottom: 2px solid #777777;
+    padding: 20px 0;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-placeholder {
+    width: 70px;
+    height: 70px;
+    padding: 5px; /* BARU */
+    border: 3px dashed #e23d3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* BARU */
+}
+
+.brand h1 {
+    margin: 0;
+    color:rgb(236, 240, 6);
+    font-size: 24px;
+}
+
+.brand p {
+    margin: 0;
+}
+
+.profile {
+    padding: 10px 20px;
+    border: 2px solid #e0f712;
+    background-color: #eeeeee;
+}
+
+/* =========================
+   NAV
+   ========================= */
+nav {
+    background-color: #f7ea3b;
+    border-bottom: 2px solid #777777;
+}
+
+.nav-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+nav a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #0f43ec;
+    font-weight: bold; /* BARU */
+}
+
+nav a:hover {
+    background-color: #16bbd1;
+}
+
+/* =========================
+   MAIN LAYOUT
+   ========================= */
+.main-layout {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    align-items: start; /* BARU - sidebar tidak melar */
+}
+
+/* =========================
+   SIDEBAR
+   ========================= */
+.sidebar {
+    background-color: #dddddd;
+    border: 2px solid #777777;
+    padding: 20px;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+}
+
+.sidebar a {
+    display: block;
+    color: #333333;
+    text-decoration: none;
+    border-bottom: 1px solid #aaaaaa;
+    padding: 12px 0;
+}
+
+.sidebar a:last-child {
+    border-bottom: none; /* BARU */
+}
+
+.sidebar a:hover {
+    font-weight: bold;
+}
+
+/* =========================
+   CONTENT
+   ========================= */
+.content {
+    min-width: 0;
+}
+
+/* =========================
+   HERO
+   ========================= */
+.hero {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    align-items: center; /* BARU */
+    padding: 30px;
+    border: 3px solid #777777;
+    background-color: #eeeeee;
+    margin-bottom: 30px;
+}
+
+.hero-text h2 {
+    margin: 5px 0 10px; /* BARU */
+}
+
+.hero-text p {
+    margin: 0 0 15px; /* BARU */
+}
+
+.hero-text .label {
+    margin-bottom: 0; /* BARU */
+}
+
+.hero-image {
+    min-height: 220px;
+    padding: 15px; /* BARU */
+    border: 2px dashed #777777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dddddd;
+}
+
+.label {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hero button {
+    padding: 12px 20px;
+    border: 2px solid #555555;
+    background-color: #cccccc;
+    cursor: pointer;
+    font-weight: bold; /* BARU */
+}
+
+.hero button:hover {
+    background-color: #f7ea3b; /* BARU */
+}
+
+/* =========================
+   SECTION TITLE
+   ========================= */
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* BARU */
+}
+
+.section-title h2 {
+    margin: 0; /* BARU */
+}
+
+.section-title a {
+    color: #333333;
+}
+
+/* =========================
+   CARD
+   ========================= */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    display: flex; 
+    flex-direction: column;
+    gap: 8px;
+    background-color: #eeeeee;
+    border: 2px solid #777777;
+    padding: 15px;
+}
+
+.card h3,
+.card p {
+    margin: 0;  
+}
+
+.card p {
+    flex: 1;    
+}
+
+.card-image {
+    height: 160px;  
+    padding: 10px;  
+    margin-bottom: 5px; 
+    background-color: #dddddd;
+    border: 2px dashed #777777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card a {
+    color: #333333;
+    font-weight: bold;
+}
+
+/* =========================
+   LAYANAN
+   ========================= */
+.layanan {
+    margin-top: 40px;
+}
+
+.layanan h2 {
+    margin: 0 0 15px;   
+}
+
+.layanan-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.layanan-item {
+    min-height: 100px;
+    border: 2px solid #777777;
+    background-color: #dddddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;     
+    font-weight: bold;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+footer {
+    background-color: #9ce21a;
+    border-top: 2px solid #777777;
+    padding: 25px 0;
+}
+
+.footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-wrapper p {
+    margin: 0; /* BARU */
+}
+
+/* =========================
+   TABLET
+   ========================= */
+@media (max-width: 900px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .sidebar h3 {
+        width: 100%;
+    }
+    .sidebar a {
+        border: 1px solid #777777;
+        padding: 10px;
+    }
+    .sidebar a:last-child {
+        border: 1px solid #777777;  
+    }
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .layanan-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =========================
+   SMARTPHONE
+   ========================= */
+@media (max-width: 600px) {
+    .header-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .nav-wrapper {
+        flex-direction: column;
+    }
+    nav a {
+        border-bottom: 1px solid #999999;
+    }
+    .hero {
+        grid-template-columns: 1fr;
+    }
+    .hero-image {
+        min-height: 160px;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+    .layanan-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
