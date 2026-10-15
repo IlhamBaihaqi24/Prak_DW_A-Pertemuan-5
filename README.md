@@ -1,6 +1,5 @@
 # LAPORAN PRAKTIKUM DESAIN WEB A
-## Pertemuan 5: Desain Kerangka Website, Wireframe, dan Struktur Informasi (Studi Kasus SMK Bunda Kandoeng)
-
+## Pertemuan 5: Desain Kerangka Website, Wireframe, dan Struktur Informasi 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Selesai-success)
@@ -104,6 +103,12 @@ Prak_DW_A-Pertemuan-5/
 │   │   └── style.css
 │   ├── images/                     # bk, spmb, seragam, kepsek
 │   └── dokumentasi/                # Screenshot desktop dan mobile
+├── Tugas/
+│   ├── index.html
+│   ├── css/
+│   │   └── style.css
+│   ├── images/                     # pb, 2kb, artm, idm, boibz
+│   └── dokumentasi/                # Screenshot desktop dan mobile
 ├── Materi/                         # Modul pertemuan 5
 └── README.md                       # Laporan praktikum
 ```
@@ -118,6 +123,8 @@ Studi kasus yang dipakai adalah website **SMK Bunda Kandoeng**. Halaman dirancan
 
 - **Contoh 1** berupa halaman informasi sederhana dengan sidebar dan tiga *card* konten.
 - **Contoh 2** berupa portal sekolah yang lebih lengkap, dengan menu siswa, informasi sekolah, dan layanan siswa.
+
+Selain dua contoh tersebut, ada satu halaman lagi di folder **Tugas**, yaitu wireframe portal berita bertema turnamen Point Blank (berita utama, daftar terpopuler, dan tiga berita terbaru).
 
 ### 5.2 Menghubungkan HTML dengan CSS
 
@@ -320,6 +327,127 @@ Unit `fr` membagi sisa ruang secara proporsional. Misalnya `2fr 1fr` berarti kol
 
 ---
 
+### 5.5 Tugas: Wireframe Portal Berita (Turnamen Point Blank)
+
+Pada Tugas ini saya membuat wireframe portal berita dengan tema esports. Isi beritanya seputar turnamen Point Blank terbaru: 2KB DYNASTY juara Point Blank Star Battle Season 2 dan jadwal PBNC XVII di JICC Senayan. Tata letaknya memakai gabungan Flexbox (header dan navbar) dan CSS Grid (layout halaman dan card).
+
+#### Struktur HTML
+
+```html
+<header class="area header">
+  <div class="container header-wrapper"> <!-- hamburger, logo, judul, search, tombol Masuk -->
+<nav class="area navbar">
+  <div class="container nav-wrapper">    <!-- 6 menu -->
+<main class="container">
+  <div class="top-layout">
+    <section class="area headline">      <!-- berita utama -->
+    <aside class="area populer">         <!-- daftar terpopuler -->
+  </div>
+  <section class="area daftar">
+    <div class="card-grid">              <!-- tiga card berita -->
+</main>
+<footer class="area footer">
+```
+
+| Bagian | Fungsi |
+|---|---|
+| `header` | Logo Point Blank, judul "Portal Berita", kolom pencarian, dan tombol Masuk |
+| `navbar` | Beranda, Nasional, Ekonomi, Olahraga, Teknologi, Esports (menu aktif: Esports) |
+| `headline` | Berita utama: foto, kategori dan tanggal, judul, isi berita, dan sumber |
+| `populer` | Daftar lima berita terpopuler (memakai `<ol>`) |
+| `daftar` | Tiga *card* Berita Terbaru: ARTM HFS ULTIMATE, PBNC XVII, dan Reborn KRS |
+| `footer` | Hak cipta portal |
+
+#### Penerapan CSS
+
+Warna disimpan di variabel CSS pada `:root`, jadi kalau mau ganti tema cukup ubah di satu tempat. Palet yang dipakai adalah biru gelap (navy) dengan aksen oranye.
+
+```css
+:root {
+    --navy: #0f172a;
+    --navy2: #1e293b;
+    --aksen: #f97316;
+    --aksen-gelap: #ea580c;
+    --teks: #1e293b;
+}
+```
+
+Class `.container` dipakai ulang di header, navbar, konten, dan footer supaya lebar kontennya sama dan berada di tengah:
+
+```css
+.container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+```
+
+Bagian atas halaman memakai CSS Grid dua kolom, berita utama dapat dua bagian dan terpopuler satu bagian. Tiga *card* di bawahnya juga memakai Grid:
+
+```css
+.top-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+Header dan navbar memakai Flexbox karena susunannya satu baris. Kolom pencarian diberi `flex: 1` supaya mengisi sisa ruang di antara judul dan tombol Masuk:
+
+```css
+.header-wrapper { display: flex; align-items: center; gap: 15px; }
+.search         { display: flex; flex: 1; gap: 8px; }
+.nav-wrapper    { display: flex; }
+```
+
+Untuk foto, saya memakai `object-fit: contain` agar gambar tidak terpotong. Di HTML juga ada `onerror` pada tag `img`: kalau gambar gagal dimuat, gambar disembunyikan dan diganti teks keterangan foto, jadi kotaknya tetap terlihat seperti wireframe.
+
+#### Media Query (Dua Breakpoint)
+
+| Breakpoint | Perubahan |
+|---|---|
+| **≤ 900px (tablet)** | *Card* berita menjadi 2 kolom |
+| **≤ 700px (ponsel)** | Tombol hamburger muncul dan navbar disembunyikan, kolom pencarian pindah ke baris sendiri, berita utama dan terpopuler ditumpuk, *card* menjadi 1 kolom, footer ditumpuk |
+
+```css
+@media (max-width: 900px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+    .menu-toggle { display: block; }
+    .navbar      { display: none; }
+    .search      { order: 5; flex-basis: 100%; }
+
+    .top-layout,
+    .card-grid   { grid-template-columns: 1fr; }
+}
+```
+
+Karena ini masih wireframe, tombol hamburger belum diberi fungsi (belum ada JavaScript), jadi fungsinya hanya sebagai penanda posisi menu di tampilan ponsel.
+
+#### Hasil Tampilan Tugas
+
+**Desktop:**
+
+![Tampilan Desktop (1)](Tugas/dokumentasi/Tampilan%20-%20Desktop%20(1).png)
+![Tampilan Desktop (2)](Tugas/dokumentasi/Tampilan%20-%20Desktop%20(2).png)
+
+**Mobile:**
+
+![Tampilan Mobile (1)](Tugas/dokumentasi/Tampilan%20-%20Mobile%20(1).png)
+![Tampilan Mobile (2)](Tugas/dokumentasi/Tampilan%20-%20Mobile%20(2).png)
+![Tampilan Mobile (3)](Tugas/dokumentasi/Tampilan%20-%20Mobile%20(3).png)
+
+---
+
 ## 6. Perbandingan Contoh 1 dan Contoh 2
 
 | Aspek | Contoh 1 | Contoh 2 |
@@ -364,7 +492,7 @@ Unit `fr` membagi sisa ruang secara proporsional. Misalnya `2fr 1fr` berarti kol
 ```bash
    cd Prak_DW_A-Pertemuan-5
 ```
-3. **Buka file HTML di browser**: `Contoh 1/index.html` atau `Contoh 2/index.html`, dengan klik dua kali atau memakai ekstensi *Live Server* di VS Code.
+3. **Buka file HTML di browser**: `Contoh 1/index.html`, `Contoh 2/index.html`, atau `Tugas/index.html`, dengan klik dua kali atau memakai ekstensi *Live Server* di VS Code.
 4. **Uji tampilan mobile**: tekan `F12` di browser, lalu aktifkan *Toggle Device Toolbar* (`Ctrl + Shift + M`).
 
 > ⚠️ Folder `css/` dan `images/` harus berada satu level dengan `index.html`, dan penulisan path harus persis sama (perhatikan huruf besar/kecil).
@@ -380,6 +508,7 @@ Dari praktikum Pertemuan 5 ini dapat disimpulkan bahwa:
 3. **Media query** membuat halaman menyesuaikan ukuran layar. Contoh 1 cukup satu *breakpoint*, sedangkan Contoh 2 memakai dua *breakpoint* agar tampilan tablet dan ponsel lebih nyaman.
 4. Penggunaan **variabel CSS** (Contoh 1) dan class berulang seperti `.container` (Contoh 2) membuat kode lebih rapi dan mudah dirawat.
 5. Memisahkan `index.html` dan `style.css` membuat struktur dan tampilan mudah diubah tanpa saling mengganggu.
+6. Pada Tugas, gabungan Flexbox untuk header dan navbar serta CSS Grid untuk layout halaman dan *card* berita membuat tampilan portal berita rapi di desktop. Dua *breakpoint* (900px dan 700px) cukup untuk menyesuaikannya ke tablet dan ponsel.
 
 Materi ini menjadi dasar sebelum melanjutkan ke pembuatan website yang lebih lengkap pada pertemuan berikutnya.
 
